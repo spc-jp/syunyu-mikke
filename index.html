@@ -3,1071 +3,702 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>収入みっけ｜あなたの「お得な働き方」を診断します</title>
-
-<!-- Favicon -->
-<link rel="icon" href="https://spc-jp.github.io/syunyu-mikke/favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="https://spc-jp.github.io/syunyu-mikke/favicon.png">
-
-<!-- OGP & Twitter Card Settings -->
-<meta property="og:title" content="収入みっけ｜あなたの「お得な働き方」を診断します">
-<meta property="og:description" content="あなたのお得な働き方を、すぐに診断します。収入の壁マップとシミュレーションでベストな選択を。">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://spc-jp.github.io/syunyu-mikke/">
-<meta property="og:image" content="https://spc-jp.github.io/syunyu-mikke/ogp.jpg">
-<meta property="og:site_name" content="収入みっけ">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="収入みっけ｜あなたの「お得な働き方」を診断します">
-<meta name="twitter:description" content="あなたのお得な働き方を、すぐに診断します。収入の壁マップとシミュレーションでベストな選択を。">
-<meta name="twitter:image" content="https://spc-jp.github.io/syunyu-mikke/ogp.jpg">
-
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kurenaido&display=swap" rel="stylesheet">
+<title>収入みっけ｜損しない働き方診断</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cream: #fdf6ee;
-    --peach: #fde8d8;
-    --coral: #e8714a;
-    --coral-dark: #c85a35;
-    --gold: #d4a044;
-    --gold-light: #f0c878;
-    --green: #4caf7d;
-    --green-light: #e8f5ee;
-    --red: #e05555;
-    --red-light: #fdeaea;
-    --yellow: #f5c842;
-    --yellow-light: #fef9e6;
-    --navy: #2c3e50;
-    --gray: #7f8c8d;
-    --white: #ffffff;
-    --shadow: 0 4px 20px rgba(0,0,0,0.08);
-    --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+    --coral: #FF6B6B;
+    --peach: #FFB347;
+    --mint: #4ECDC4;
+    --navy: #2C3E50;
+    --soft-bg: #FFF5F0;
+    --card-bg: #FFFFFF;
+    --text: #3D2B1F;
+    --muted: #8B7B74;
+    --border: #FFE0D0;
+    --green: #27AE60;
+    --orange: #E67E22;
+    --red: #E74C3C;
   }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Noto Sans JP', sans-serif;
-    background: var(--cream);
-    color: var(--navy);
+    background: linear-gradient(135deg, #FFF5F0 0%, #FFE8E0 40%, #FFF0E8 100%);
     min-height: 100vh;
+    color: var(--text);
   }
-
-  /* ヘッダー */
   .header {
-    background: linear-gradient(135deg, #e8714a 0%, #d4a044 100%);
-    padding: 28px 20px 32px;
+    background: linear-gradient(135deg, #FF6B6B, #FFB347);
+    padding: 24px 16px 32px;
     text-align: center;
     position: relative;
     overflow: hidden;
   }
+  /* ヘッダーの装飾を少しリッチに */
   .header::before {
     content: '';
     position: absolute;
-    top: -40px; right: -40px;
-    width: 160px; height: 160px;
+    top: -50px; right: -30px;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
     border-radius: 50%;
-    background: rgba(255,255,255,0.1);
   }
   .header::after {
     content: '';
     position: absolute;
-    bottom: -30px; left: -30px;
+    bottom: -40px; left: -20px;
     width: 120px; height: 120px;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
     border-radius: 50%;
-    background: rgba(255,255,255,0.08);
   }
-  .header-icon {
-    font-size: 2.4rem;
-    margin-bottom: 6px;
-  }
-  .header h1 {
-    font-family: 'Zen Kurenaido', sans-serif;
-    font-size: 2rem;
-    color: white;
-    letter-spacing: 0.1em;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  }
-  .header p {
+  .series-label {
+    font-size: 11px;
     color: rgba(255,255,255,0.9);
-    font-size: 0.85rem;
-    margin-top: 6px;
-    font-weight: 500;
-  }
-  .series-badge {
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    background: rgba(255,255,255,0.2);
     display: inline-block;
-    background: rgba(255,255,255,0.25);
+    padding: 4px 12px;
+    border-radius: 12px;
+  }
+  .app-title {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 34px;
+    font-weight: 900;
     color: white;
-    font-size: 0.72rem;
-    padding: 3px 12px;
-    border-radius: 20px;
-    margin-bottom: 10px;
-    letter-spacing: 0.08em;
-    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 6px;
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.2s;
   }
-
-  /* メインコンテンツ */
-  .container {
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 20px 16px 40px;
+  .app-title:hover {
+    transform: scale(1.05);
   }
-
-  /* 入力カード */
+  .app-subtitle { font-size: 13px; color: rgba(255,255,255,0.95); font-weight: 500; }
+  .container { max-width: 480px; margin: -16px auto 0; padding: 0 16px 40px; position: relative; z-index: 10; }
+  
+  /* カードのシャドウをより柔らかく今風に */
   .card {
-    background: var(--white);
+    background: white;
     border-radius: 20px;
     padding: 24px 20px;
     margin-bottom: 16px;
-    box-shadow: var(--shadow);
+    box-shadow: 0 8px 24px rgba(255, 107, 107, 0.08);
+    border: 1px solid rgba(255, 224, 208, 0.5);
+    transition: transform 0.2s;
   }
   .card-title {
-    font-size: 0.78rem;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 16px;
     font-weight: 700;
     color: var(--coral);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
     margin-bottom: 16px;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
   }
-  .card-title::after {
+  .card-title::before {
     content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, var(--peach), transparent);
+    display: inline-block;
+    width: 5px; height: 18px;
+    background: linear-gradient(to bottom, var(--coral), var(--peach));
+    border-radius: 3px;
   }
-
-  .form-group {
-    margin-bottom: 18px;
-  }
-  .form-group:last-child { margin-bottom: 0; }
-
-  label {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 8px;
-  }
-  label span.sub {
-    font-weight: 400;
-    color: var(--gray);
-    font-size: 0.78rem;
-  }
-
-  .input-wrap {
-    position: relative;
-  }
-  .input-wrap input {
-    width: 100%;
-    padding: 12px 50px 12px 16px;
-    border: 2px solid #e8e0d8;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 700;
-    color: var(--navy);
-    background: var(--cream);
-    transition: border-color 0.2s, box-shadow 0.2s;
-    -webkit-appearance: none;
-  }
-  .input-wrap input:focus {
-    outline: none;
-    border-color: var(--coral);
-    box-shadow: 0 0 0 3px rgba(232,113,74,0.12);
-    background: white;
-  }
-  .input-unit {
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 0.82rem;
-    color: var(--gray);
-    font-weight: 500;
-  }
-
-  /* スライダー */
-  .slider-wrap {
-    margin-top: 10px;
-  }
+  .input-group { margin-bottom: 16px; }
+  .input-group:last-child { margin-bottom: 0; }
+  .input-label { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+  
+  /* スライダーのインタラクション強化 */
   input[type="range"] {
     width: 100%;
     -webkit-appearance: none;
-    height: 6px;
-    border-radius: 3px;
-    background: linear-gradient(to right, var(--coral) 0%, var(--coral) var(--val, 0%), #e0d8d0 var(--val, 0%), #e0d8d0 100%);
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(to right, #FFE0D0, #FFD0B0);
     outline: none;
     cursor: pointer;
+    margin-bottom: 8px;
   }
   input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 22px; height: 22px;
+    width: 26px; height: 26px;
     border-radius: 50%;
-    background: var(--coral);
-    box-shadow: 0 2px 8px rgba(232,113,74,0.4);
+    background: white;
+    border: 4px solid var(--coral);
     cursor: pointer;
-    transition: transform 0.15s;
+    box-shadow: 0 3px 10px rgba(255,107,107,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
   }
-  input[type="range"]::-webkit-slider-thumb:active {
-    transform: scale(1.2);
-  }
-  .slider-labels {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 4px;
-    font-size: 0.72rem;
-    color: var(--gray);
+  input[type="range"]::-webkit-slider-thumb:hover,
+  input[type="range"]:active::-webkit-slider-thumb {
+    transform: scale(1.15);
+    box-shadow: 0 4px 12px rgba(255,107,107,0.4);
   }
 
-  /* ラジオボタン */
-  .radio-group {
+  .range-display {
     display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    gap: 4px;
+    margin-top: 8px;
   }
-  .radio-btn {
-    flex: 1;
-    min-width: 100px;
-  }
-  .radio-btn input { display: none; }
-  .radio-btn label {
-    display: block;
+  .range-display input[type="number"] {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--navy);
+    width: 100px;
     text-align: center;
-    padding: 10px 8px;
-    border: 2px solid #e8e0d8;
-    border-radius: 12px;
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: var(--gray);
-    cursor: pointer;
-    transition: all 0.2s;
-    background: var(--cream);
+    border: none;
+    border-bottom: 2px solid var(--border);
+    background: transparent;
+    outline: none;
+    padding: 0 4px;
+    -moz-appearance: textfield;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .range-display input[type="number"]::-webkit-outer-spin-button,
+  .range-display input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
     margin: 0;
   }
-  .radio-btn input:checked + label {
+  .range-display input[type="number"]:focus {
+    border-bottom-color: var(--coral);
+    background: #FFF5F0;
+    border-radius: 6px 6px 0 0;
+    color: var(--coral);
+  }
+  .range-display span { font-size: 14px; color: var(--muted); font-weight: 500; }
+  .range-hints { display: flex; justify-content: space-between; font-size: 11px; color: #A89B94; margin-top: 4px; font-weight: 500; }
+  
+  .toggle-group { display: flex; gap: 8px; margin-top: 4px; }
+  .toggle-btn {
+    flex: 1;
+    padding: 12px 8px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    background: white;
+    font-size: 13px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+    color: var(--muted);
+  }
+  .toggle-btn:hover { background: #FFFaf8; }
+  .toggle-btn.active {
     border-color: var(--coral);
-    background: linear-gradient(135deg, #fde8d8, #fff5ef);
-    color: var(--coral-dark);
+    background: #FFF5F0;
+    color: var(--coral);
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(255,107,107,0.1);
   }
-  .radio-btn label:hover {
-    border-color: var(--gold);
-  }
-
-  /* 診断ボタン */
+  
+  /* 診断ボタンをさらに魅力的に（シマーエフェクト追加） */
   .btn-diagnose {
     width: 100%;
     padding: 18px;
-    background: linear-gradient(135deg, var(--coral), var(--gold));
+    background: linear-gradient(135deg, #FF6B6B, #FFB347);
     border: none;
     border-radius: 16px;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 1.05rem;
-    font-weight: 900;
     color: white;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
     cursor: pointer;
-    letter-spacing: 0.08em;
-    box-shadow: 0 6px 20px rgba(232,113,74,0.35);
+    box-shadow: 0 6px 20px rgba(255,107,107,0.4);
     transition: all 0.2s;
-    margin-top: 4px;
+    margin-bottom: 24px;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
   }
-  .btn-diagnose:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(232,113,74,0.45);
+  .btn-diagnose::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
+    animation: shimmer 3s infinite;
   }
-  .btn-diagnose:active { transform: translateY(0); }
+  @keyframes shimmer {
+    0% { left: -100%; }
+    20% { left: 200%; }
+    100% { left: 200%; }
+  }
+  .btn-diagnose:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,107,107,0.5); }
+  .btn-diagnose:active { transform: translateY(2px); box-shadow: 0 2px 10px rgba(255,107,107,0.4); } /* 押し込み感 */
 
-  /* 結果エリア */
   #result { display: none; }
+  
+  /* 結果の各セクションを順次表示するアニメーション用クラス */
+  .result-section {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  @keyframes fadeUpBounce {
+    0% { opacity: 0; transform: translateY(20px); }
+    70% { transform: translateY(-3px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
 
-  /* 現在地バナー */
-  .position-banner {
-    border-radius: 20px;
-    padding: 20px;
-    margin-bottom: 16px;
+  /* ステータスバッジのスタイル微調整 */
+  .status-badge {
     text-align: center;
+    padding: 32px 20px;
+    background: white;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 8px 24px rgba(255,107,107,0.08);
+    border: 1px solid rgba(255, 224, 208, 0.5);
     position: relative;
     overflow: hidden;
   }
-  .position-banner.safe {
-    background: linear-gradient(135deg, #4caf7d, #3a9a6e);
-    color: white;
+  .status-badge::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 6px;
+    background: linear-gradient(to right, var(--coral), var(--peach));
   }
-  .position-banner.caution {
-    background: linear-gradient(135deg, #f5c842, #e8a820);
-    color: var(--navy);
+  .status-emoji { 
+    font-size: 56px; 
+    margin-bottom: 12px;
+    animation: bounce 2s infinite ease-in-out;
   }
-  .position-banner.over {
-    background: linear-gradient(135deg, #e05555, #c43c3c);
-    color: white;
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
   }
-  .position-banner.great {
-    background: linear-gradient(135deg, #6c7fd8, #4a5fc4);
-    color: white;
-  }
-  .banner-icon { font-size: 2.2rem; margin-bottom: 6px; }
-  .banner-status {
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    opacity: 0.9;
-    margin-bottom: 4px;
-  }
-  .banner-message {
-    font-size: 1.1rem;
-    font-weight: 900;
-    line-height: 1.5;
-  }
-  .banner-income {
-    font-size: 0.85rem;
-    margin-top: 8px;
-    opacity: 0.85;
-  }
+  .status-title { font-family: 'Zen Maru Gothic', sans-serif; font-size: 24px; font-weight: 900; margin-bottom: 10px; color: var(--navy); }
+  .status-desc { font-size: 14px; color: var(--text); line-height: 1.8; font-weight: 500;}
 
-  /* 収入ゲージ */
-  .gauge-card {
+  /* 壁セクションなどの共通カードスタイル */
+  .result-card {
     background: white;
     border-radius: 20px;
-    padding: 20px;
+    padding: 24px 20px;
     margin-bottom: 16px;
-    box-shadow: var(--shadow);
+    box-shadow: 0 8px 24px rgba(255,107,107,0.08);
+    border: 1px solid rgba(255, 224, 208, 0.5);
   }
-  .gauge-title {
-    font-size: 0.78rem;
+  .wall-section-title {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 16px;
     font-weight: 700;
-    color: var(--coral);
-    letter-spacing: 0.1em;
-    margin-bottom: 16px;
-  }
-  .gauge-bar-wrap {
-    position: relative;
-    height: 48px;
-    margin-bottom: 8px;
-  }
-  .gauge-track {
-    position: absolute;
-    top: 16px;
-    left: 0; right: 0;
-    height: 16px;
-    border-radius: 8px;
-    background: #f0ebe4;
-    overflow: hidden;
-  }
-  .gauge-fill {
-    height: 100%;
-    border-radius: 8px;
-    background: linear-gradient(to right, var(--green), var(--gold), var(--coral));
-    transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-    width: 0%;
-  }
-  .gauge-marker {
-    position: absolute;
-    top: 0;
-    transform: translateX(-50%);
+    color: var(--navy);
+    margin-bottom: 20px;
     text-align: center;
   }
-  .gauge-marker-line {
-    width: 2px;
-    height: 48px;
-    background: rgba(0,0,0,0.15);
-    margin: 0 auto;
-  }
-  .gauge-marker-label {
-    position: absolute;
-    top: -18px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.66rem;
-    color: var(--gray);
-    white-space: nowrap;
-    font-weight: 700;
-  }
-  .gauge-current {
-    position: absolute;
-    top: 0;
-    transform: translateX(-50%);
-    transition: left 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-  .gauge-current-dot {
-    width: 20px; height: 20px;
-    border-radius: 50%;
-    background: var(--coral);
-    border: 3px solid white;
-    box-shadow: 0 2px 8px rgba(232,113,74,0.5);
-    margin: 0 auto;
-    margin-top: 8px;
-  }
-  .gauge-current-label {
-    font-size: 0.68rem;
-    font-weight: 900;
-    color: var(--coral);
-    white-space: nowrap;
-    text-align: center;
-    margin-top: 2px;
-  }
-  .walls-legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 12px;
-  }
-  .wall-chip {
-    font-size: 0.72rem;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-weight: 700;
-  }
-  .wall-chip.passed {
-    background: var(--green-light);
-    color: var(--green);
-  }
-  .wall-chip.current {
-    background: var(--yellow-light);
-    color: #c8a000;
-  }
-  .wall-chip.ahead {
-    background: #f0ebe4;
-    color: var(--gray);
-  }
-
-  /* シナリオカード */
-  .scenario-section-title {
-    font-size: 0.82rem;
-    font-weight: 900;
-    color: var(--navy);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .scenario-card {
-    background: white;
-    border-radius: 16px;
-    padding: 18px;
-    margin-bottom: 10px;
-    box-shadow: var(--shadow);
-    border-left: 4px solid transparent;
-    transition: transform 0.15s;
-    cursor: default;
-  }
-  .scenario-card:hover { transform: translateX(2px); }
-  .scenario-card.s-keep { border-left-color: var(--green); }
-  .scenario-card.s-up { border-left-color: var(--gold); }
-  .scenario-card.s-full { border-left-color: var(--coral); }
-
-  .scenario-head {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-  .scenario-icon { font-size: 1.6rem; }
-  .scenario-label {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-  }
-  .scenario-label.l-keep { color: var(--green); }
-  .scenario-label.l-up { color: var(--gold); }
-  .scenario-label.l-full { color: var(--coral); }
-  .scenario-name {
-    font-size: 0.95rem;
-    font-weight: 900;
-    color: var(--navy);
-    margin-top: 1px;
-  }
-
-  .scenario-income-row {
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
-    margin-bottom: 8px;
-  }
-  .scenario-income-num {
-    font-size: 1.5rem;
-    font-weight: 900;
-    color: var(--navy);
-  }
-  .scenario-income-unit {
-    font-size: 0.82rem;
-    color: var(--gray);
-  }
-  .scenario-income-diff {
-    font-size: 0.78rem;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 10px;
-    margin-left: auto;
-  }
-  .diff-plus { background: var(--green-light); color: var(--green); }
-  .diff-same { background: #f0ebe4; color: var(--gray); }
-  .diff-check { background: var(--yellow-light); color: #c8a000; }
-
-  .scenario-points {
-    list-style: none;
-    padding: 0;
-  }
-  .scenario-points li {
-    font-size: 0.82rem;
-    color: var(--gray);
-    padding: 3px 0;
-    padding-left: 16px;
-    position: relative;
-    line-height: 1.5;
-  }
-  .scenario-points li::before {
-    content: '›';
-    position: absolute;
-    left: 0;
-    color: var(--coral);
-    font-weight: 900;
-  }
-
-  /* おすすめバッジ */
-  .recommend-badge {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--coral), var(--gold));
-    color: white;
-    font-size: 0.68rem;
-    font-weight: 900;
-    padding: 3px 10px;
-    border-radius: 10px;
-    margin-left: 8px;
-    letter-spacing: 0.05em;
-  }
-
-  /* 配偶者控除サマリー */
-  .deduction-card {
-    background: linear-gradient(135deg, #f0f4ff, #e8eeff);
-    border-radius: 16px;
-    padding: 16px 18px;
-    margin-bottom: 16px;
-  }
-  .deduction-title {
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: #5a6acf;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
+  .wall-item { margin-bottom: 18px; }
+  .wall-item:last-child { margin-bottom: 0; }
+  .wall-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .wall-name { font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 8px; color: var(--navy);}
+  .wall-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+  .wall-amount { font-size: 13px; }
+  .wall-bar-bg { height: 12px; background: #F0F0F0; border-radius: 6px; overflow: hidden; }
+  .wall-bar-fill { height: 100%; border-radius: 6px; transition: width 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .wall-note { font-size: 11px; color: var(--muted); margin-top: 6px; }
+  
   .deduction-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 6px 0;
-    border-bottom: 1px solid rgba(90,106,207,0.1);
-    font-size: 0.84rem;
+    padding: 12px 0;
+    border-bottom: 1px dashed #FFE0D0;
   }
   .deduction-row:last-child { border-bottom: none; }
-  .deduction-label { color: var(--navy); }
-  .deduction-value { font-weight: 900; color: #5a6acf; }
-  .deduction-value.zero { color: var(--red); }
-
-  /* 注意書き */
-  .note-card {
-    background: var(--yellow-light);
-    border-radius: 14px;
-    padding: 14px 16px;
-    margin-bottom: 16px;
-    border: 1px solid #f0d870;
-  }
-  .note-card p {
-    font-size: 0.78rem;
-    color: #7a6a00;
-    line-height: 1.6;
-  }
-  .note-card p strong {
-    font-weight: 900;
-  }
-
-  /* リセットボタン */
-  .btn-reset {
-    width: 100%;
-    padding: 14px;
-    background: transparent;
-    border: 2px solid #e8e0d8;
-    border-radius: 12px;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 0.88rem;
-    font-weight: 700;
-    color: var(--gray);
-    cursor: pointer;
-    transition: all 0.2s;
-    margin-top: 8px;
-  }
-  .btn-reset:hover {
-    border-color: var(--coral);
-    color: var(--coral);
-  }
-
-  /* フッター */
-  .footer {
+  .deduction-label { font-size: 13px; color: var(--muted); font-weight: 500;}
+  .deduction-value { font-family: 'Zen Maru Gothic', sans-serif; font-size: 20px; font-weight: 900; }
+  .dv-positive { color: var(--green); }
+  .dv-negative { color: var(--red); }
+  .dv-neutral { color: var(--navy); }
+  
+  /* 追加: 手取り額表示用のスタイル */
+  .takehome-wrap {
     text-align: center;
-    padding: 20px;
-    font-size: 0.72rem;
-    color: var(--gray);
-    line-height: 1.8;
+    padding: 16px 0 8px;
   }
-  .footer a {
+  .takehome-amount {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 36px;
+    font-weight: 900;
     color: var(--coral);
-    text-decoration: none;
+    margin-bottom: 8px;
+  }
+  .takehome-amount span { font-size: 20px; color: var(--text); font-weight: 700; }
+  .takehome-details {
+    font-size: 13px;
+    color: var(--muted);
+    background: #FFF9F5;
+    padding: 12px;
+    border-radius: 12px;
+    line-height: 1.6;
+    display: inline-block;
+    text-align: left;
+  }
+  .input-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 12px;
+    line-height: 1.5;
+    padding: 10px;
+    background: #F8F9FA;
+    border-radius: 8px;
+    border-left: 3px solid var(--peach);
   }
 
-  /* アニメーション */
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  .advice-wrap { margin-bottom: 16px; }
+  .advice-card {
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
   }
-  .animate-in {
-    animation: fadeInUp 0.4s ease forwards;
+  .advice-card.green { background: #F0FDF4; border: 1px solid #BBF7D0; }
+  .advice-card.orange { background: #FFFBEB; border: 1px solid #FDE68A; }
+  .advice-card.red { background: #FEF2F2; border: 1px solid #FECACA; }
+  .advice-card.blue { background: #EFF6FF; border: 1px solid #BFDBFE; }
+  .advice-header {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--navy);
   }
-  .animate-in:nth-child(2) { animation-delay: 0.1s; }
-  .animate-in:nth-child(3) { animation-delay: 0.2s; }
-  .animate-in:nth-child(4) { animation-delay: 0.3s; }
-  .animate-in:nth-child(5) { animation-delay: 0.4s; }
+  .advice-body { font-size: 14px; line-height: 1.8; color: var(--text); }
+  
+  .disclaimer {
+    background: rgba(255,255,255,0.6);
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255,255,255,0.8);
+  }
+  .footer { text-align: center; padding: 20px; font-size: 12px; color: var(--muted); font-weight: 500;}
 </style>
 </head>
 <body>
 
-<!-- ヘッダー -->
 <div class="header">
-  <div class="series-badge">みっけシリーズ</div>
-  <div class="header-icon">💰</div>
-  <h1>収入みっけ</h1>
-  <p>あなたのお得な働き方を、すぐに診断します</p>
+  <div class="series-label">💰 みっけシリーズ</div>
+  <div class="app-title" onclick="location.reload()" title="トップに戻る">収入みっけ 💡</div>
+  <div class="app-subtitle">損しない働き方を、いっしょに見つけよう</div>
 </div>
 
-<!-- メインコンテンツ -->
 <div class="container">
 
-  <!-- 入力フォーム -->
-  <div id="form-area">
-    <div class="card">
-      <div class="card-title">👨 夫の年収</div>
-      <div class="form-group">
-        <label>夫の年収はどのくらいですか？ <span class="sub">（目安でOK）</span></label>
-        <div class="input-wrap">
-          <input type="number" id="husband-income" value="600" min="0" max="2000" step="10">
-          <span class="input-unit">万円</span>
-        </div>
-        <div class="slider-wrap">
-          <input type="range" id="husband-slider" min="0" max="2000" value="600" step="10">
-          <div class="slider-labels">
-            <span>0万</span><span>500万</span><span>1000万</span><span>1500万</span><span>2000万</span>
-          </div>
-        </div>
+  <div class="card">
+    <div class="card-title">👨 夫の年収</div>
+    <div class="input-group">
+      <div class="input-label">スライダーか直接入力で合わせてください</div>
+      <input type="range" id="husbandIncome" min="200" max="1200" step="25" value="600" oninput="updateFromSlider('husband')">
+      <div class="range-display">
+        <input type="number" id="husbandInput" min="200" max="1200" value="600" oninput="updateFromInput('husband')">
+        <span>万円</span>
       </div>
+      <div class="range-hints"><span>200万</span><span>700万</span><span>1200万</span></div>
     </div>
-
-    <div class="card">
-      <div class="card-title">👩 妻の収入・働き方</div>
-      <div class="form-group">
-        <label>現在の妻の年収（予定）<span class="sub">（0でもOK）</span></label>
-        <div class="input-wrap">
-          <input type="number" id="wife-income" value="100" min="0" max="800" step="5">
-          <span class="input-unit">万円</span>
-        </div>
-        <div class="slider-wrap">
-          <input type="range" id="wife-slider" min="0" max="800" value="100" step="5">
-          <div class="slider-labels">
-            <span>0万</span><span>200万</span><span>400万</span><span>600万</span><span>800万</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>勤務先の規模は？ <span class="sub">（社会保険に影響）</span></label>
-        <div class="radio-group">
-          <div class="radio-btn">
-            <input type="radio" name="company-size" id="cs-large" value="large" checked>
-            <label for="cs-large">🏢 51人以上の会社</label>
-          </div>
-          <div class="radio-btn">
-            <input type="radio" name="company-size" id="cs-small" value="small">
-            <label for="cs-small">🏠 50人以下・個人事業主</label>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <button class="btn-diagnose" onclick="diagnose()">
-      💡 お得な働き方を診断する
-    </button>
   </div>
 
-  <!-- 結果エリア -->
+  <div class="card">
+    <div class="card-title">👩 妻の現在の年収（パート収入）</div>
+    <div class="input-group">
+      <div class="input-label">スライダーか直接入力で合わせてください</div>
+      <input type="range" id="wifeIncome" min="0" max="300" step="5" value="90" oninput="updateFromSlider('wife')">
+      <div class="range-display">
+        <input type="number" id="wifeInput" min="0" max="300" value="90" oninput="updateFromInput('wife')">
+        <span>万円</span>
+      </div>
+      <div class="range-hints"><span>0万</span><span>150万</span><span>300万</span></div>
+      <div class="input-note">
+        💡 <b>交通費の注意:</b><br>税金の壁(103万等)は交通費<b>抜き</b>、社会保険の壁(106/130万)は交通費<b>込み</b>で判定されます。迷ったら多めの「込み」で入力するのが安全です。
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏢 パート先の従業員数は？</div>
+    <div class="input-group">
+      <div class="input-label">106万の壁の判定用です（※週20時間以上の勤務等の条件も満たす前提で計算します）</div>
+      <div class="toggle-group">
+        <button class="toggle-btn active" id="btn51over" onclick="setCompanySize('over')">51人以上</button>
+        <button class="toggle-btn" id="btn51under" onclick="setCompanySize('under')">50人以下</button>
+        <button class="toggle-btn" id="btnUnknown" onclick="setCompanySize('unknown')">わからない</button>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-diagnose" onclick="diagnose()">✨ 診断する</button>
+
   <div id="result">
-    <!-- 現在地バナー -->
-    <div id="banner" class="position-banner animate-in"></div>
 
-    <!-- ゲージ -->
-    <div class="gauge-card animate-in">
-      <div class="gauge-title">📊 収入の壁マップ（あなたの現在地）</div>
-      <div class="gauge-bar-wrap" id="gauge-wrap"></div>
-      <div class="walls-legend" id="walls-legend"></div>
+    <div class="status-badge result-section">
+      <div class="status-emoji" id="statusEmoji">😊</div>
+      <div class="status-title" id="statusTitle"></div>
+      <div class="status-desc" id="statusDesc"></div>
     </div>
 
-    <!-- 配偶者控除 -->
-    <div class="deduction-card animate-in" id="deduction-card"></div>
-
-    <!-- シナリオ -->
-    <div class="scenario-section-title animate-in">🗺️ 3つの働き方シナリオ</div>
-    <div id="scenarios" class="animate-in"></div>
-
-    <!-- 注意書き -->
-    <div class="note-card animate-in">
-      <p>⚠️ <strong>ご注意：</strong>この診断は目安です。2025年の税制改正で各種控除額が変わる可能性があります。正確な金額は担当の税理士・社会保険労務士にご相談ください。</p>
+    <!-- 追加: 予想手取り額セクションをステータスの直後に配置 -->
+    <div class="result-card result-section">
+      <div class="card-title">💰 妻の予想手取り額（目安）</div>
+      <div class="takehome-wrap">
+        <div class="takehome-amount"><span id="takehomeValue">0</span> <span>万円</span></div>
+        <div class="takehome-details">
+          差し引かれるお金: 約 <b style="color:var(--red)"><span id="deductionValue">0</span>万円</b><br>
+          <span style="font-size:11.5px; color:#8B7B74;">（内訳：社会保険 <span id="shahoValue">0</span>万 / 所得税 <span id="incomeTaxValue">0</span>万 / 住民税 <span id="residentTaxValue">0</span>万）</span>
+        </div>
+      </div>
     </div>
 
-    <button class="btn-reset" onclick="reset()">← 入力に戻る</button>
+    <div class="advice-wrap result-section" id="adviceArea"></div>
+
+    <div class="result-card result-section">
+      <div class="wall-section-title">📊 あなたの「壁」レーダー</div>
+      <div id="wallGauge"></div>
+    </div>
+
+    <div class="result-card result-section">
+      <div class="card-title">👨 夫の税金への影響</div>
+      <div id="husbandEffect"></div>
+    </div>
+
+    <div class="disclaimer result-section">
+      ⚠️ このアプリの計算はあくまで目安（概算）です。交通費の有無、お住まいの自治体による住民税の違い、各種控除により実際の金額は異なります。正確な判断は税理士・社会保険労務士にご相談ください。
+    </div>
+
+    <div class="result-card result-section">
+      <div class="card-title">👨 夫の税金への影響</div>
+      <div id="husbandEffect"></div>
+    </div>
+
+    <div class="advice-wrap result-section" id="adviceArea"></div>
+
+    <div class="disclaimer result-section">
+      ⚠️ このアプリの計算はあくまで目安です。実際の税額は個人の状況により異なります。正確な判断は税理士・社会保険労務士にご相談ください。なお2025年分より基礎控除が123万円に引き上げ予定（確認推奨）など、税制は変わることがあります。
+    </div>
+
   </div>
 
-</div>
-
-<!-- フッター -->
-<div class="footer">
-  <p>収入みっけ｜みっけシリーズ</p>
-  <p>Smile Plus Consulting</p>
-  <p style="margin-top:4px;font-size:0.68rem;">※本アプリは情報提供を目的としています</p>
+  <div class="footer">
+    収入みっけ｜みっけシリーズ by SPC<br>
+    ※本アプリは情報提供を目的としています
+  </div>
 </div>
 
 <script>
-// スライダーと入力の連動
-function linkSlider(inputId, sliderId, maxVal) {
-  const input = document.getElementById(inputId);
-  const slider = document.getElementById(sliderId);
-  slider.max = maxVal;
-  input.addEventListener('input', () => {
-    slider.value = input.value;
-    updateSliderStyle(slider);
-  });
-  slider.addEventListener('input', () => {
-    input.value = slider.value;
-    updateSliderStyle(slider);
-  });
-  updateSliderStyle(slider);
-}
-function updateSliderStyle(slider) {
-  const pct = (slider.value - slider.min) / (slider.max - slider.min) * 100;
-  slider.style.setProperty('--val', pct + '%');
-}
-linkSlider('husband-income', 'husband-slider', 2000);
-linkSlider('wife-income', 'wife-slider', 800);
+  let companySize = 'over';
 
-// 壁の定義
-const WALLS = [
-  { income: 103, name: '103万の壁', short: '103万', desc: '所得税が発生（夫の配偶者控除もここが境目）' },
-  { income: 106, name: '106万の壁', short: '106万', desc: '大企業パートで社会保険加入義務（51人以上）' },
-  { income: 130, name: '130万の壁', short: '130万', desc: '夫の扶養から外れ社会保険に加入（全規模）' },
-  { income: 150, name: '150万の壁', short: '150万', desc: '配偶者特別控除の満額上限（夫の控除が段階減）' },
-  { income: 201, name: '201万の壁', short: '201万', desc: '配偶者特別控除が完全消滅' },
-];
-
-function getWallStatus(wifeIncome, companySize) {
-  // どの壁の手前にいるか
-  let currentWallIdx = -1;
-  for (let i = 0; i < WALLS.length; i++) {
-    // 106万の壁は大企業のみ
-    if (WALLS[i].income === 106 && companySize === 'small') continue;
-    if (wifeIncome < WALLS[i].income) {
-      currentWallIdx = i;
-      break;
-    }
+  function setCompanySize(size) {
+    companySize = size;
+    document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('btn51over').classList.toggle('active', size === 'over');
+    document.getElementById('btn51under').classList.toggle('active', size === 'under');
+    document.getElementById('btnUnknown').classList.toggle('active', size === 'unknown');
   }
-  return currentWallIdx;
-}
 
-function getDeduction(husbandIncome, wifeIncome) {
-  // 配偶者控除・配偶者特別控除（2024年基準）
-  if (husbandIncome > 1095) return { type: 'none', amount: 0, reason: '夫の年収が1,095万円超のため対象外' };
-
-  const hFactor = husbandIncome <= 900 ? 1 : husbandIncome <= 950 ? 2/3 : 0.5;
-
-  if (wifeIncome <= 103) {
-    const base = husbandIncome <= 900 ? 38 : husbandIncome <= 950 ? 26 : 13;
-    return { type: 'full', amount: base, reason: '配偶者控除（満額）' };
-  }
-  if (wifeIncome <= 150) {
-    const base = husbandIncome <= 900 ? 38 : husbandIncome <= 950 ? 26 : 13;
-    return { type: 'special', amount: base, reason: '配偶者特別控除（満額相当）' };
-  }
-  if (wifeIncome <= 155) {
-    const base = husbandIncome <= 900 ? 36 : husbandIncome <= 950 ? 24 : 12;
-    return { type: 'special', amount: base, reason: '配偶者特別控除（段階減）' };
-  }
-  if (wifeIncome <= 160) {
-    const base = husbandIncome <= 900 ? 31 : husbandIncome <= 950 ? 21 : 11;
-    return { type: 'special', amount: base, reason: '配偶者特別控除（段階減）' };
-  }
-  if (wifeIncome <= 167) {
-    const base = husbandIncome <= 900 ? 26 : husbandIncome <= 950 ? 18 : 9;
-    return { type: 'special', amount: base, reason: '配偶者特別控除（段階減）' };
-  }
-  if (wifeIncome <= 175) {
-    const base = husbandIncome <= 900 ? 21 : husbandIncome <= 950 ? 14 : 7;
-    return { type: 'special', amount: base, reason: '配偶者特別控除（段階減）' };
-  }
-  if (wifeIncome <= 183) {
-    const base = husbandIncome <= 900 ? 16 : husbandIncome <= 950 ? 11 : 6;
-    return { type: 'special', amount: base, reason: '配偶者特別控除（段階減）' };
-  }
-  if (wifeIncome <= 190) {
-    const base = husbandIncome <= 900 ? 11 : husbandIncome <= 950 ? 8 : 4;
-    return { type: 'special', amount: base, reason: '配偶者特別控除（段階減）' };
-  }
-  if (wifeIncome <= 197) {
-    const base = husbandIncome <= 900 ? 6 : husbandIncome <= 950 ? 4 : 2;
-    return { type: 'special', amount: base, reason: '配偶者特別控除（段階減）' };
-  }
-  if (wifeIncome <= 201) {
-    const base = husbandIncome <= 900 ? 3 : husbandIncome <= 950 ? 2 : 1;
-    return { type: 'special', amount: base, reason: '配偶者特別控除（わずか）' };
-  }
-  return { type: 'none', amount: 0, reason: '配偶者控除・特別控除ともに対象外' };
-}
-
-function diagnose() {
-  const husbandIncome = parseInt(document.getElementById('husband-income').value) || 0;
-  const wifeIncome = parseInt(document.getElementById('wife-income').value) || 0;
-  const companySize = document.querySelector('input[name="company-size"]:checked').value;
-
-  // 現在地判定
-  const wallIdx = getWallStatus(wifeIncome, companySize);
-  const deduction = getDeduction(husbandIncome, wifeIncome);
-
-  // バナー描画
-  renderBanner(wifeIncome, wallIdx, companySize);
-  // ゲージ描画
-  renderGauge(wifeIncome, companySize);
-  // 配偶者控除
-  renderDeduction(deduction, husbandIncome);
-  // シナリオ
-  renderScenarios(husbandIncome, wifeIncome, companySize, deduction);
-
-  // 表示切り替え
-  document.getElementById('form-area').style.display = 'none';
-  document.getElementById('result').style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function renderBanner(wifeIncome, wallIdx, companySize) {
-  const banner = document.getElementById('banner');
-  let icon, status, message, cssClass;
-
-  const effectiveWalls = WALLS.filter(w => companySize === 'large' || w.income !== 106);
-  const nextWall = effectiveWalls.find(w => w.income > wifeIncome);
-  const prevWall = [...effectiveWalls].reverse().find(w => w.income <= wifeIncome);
-
-  if (wifeIncome === 0) {
-    icon = '🏠';
-    status = '現在・専業主婦';
-    message = '今は働いていない状態です\nここから計画を立てましょう！';
-    cssClass = 'safe';
-  } else if (!nextWall) {
-    icon = '🚀';
-    status = '全ての壁を突破！';
-    message = `年収 ${wifeIncome}万円\nすべての壁を超えています`;
-    cssClass = 'great';
-  } else {
-    const gap = nextWall.income - wifeIncome;
-    if (gap <= 10) {
-      icon = '⚠️';
-      status = `${nextWall.short}まであと ${gap}万円！`;
-      message = `今が一番注意ゾーンです\n働き方の見直しタイミング！`;
-      cssClass = 'caution';
-    } else if (gap <= 30) {
-      icon = '👀';
-      status = `次の壁まであと ${gap}万円`;
-      message = `${nextWall.short}の壁が近づいています\n超えるか・抑えるか判断を！`;
-      cssClass = 'caution';
+  // スライダーを動かすと少しだけツマミの色を濃くする演出を追加（CSSでカバー）
+  function updateFromSlider(who) {
+    if(who === 'husband') {
+      document.getElementById('husbandInput').value = document.getElementById('husbandIncome').value;
     } else {
-      icon = '✅';
-      status = '今のゾーンは安定しています';
-      message = `${prevWall ? prevWall.short + 'を超え、' : ''}${nextWall.short}まで ${gap}万円の余裕あり`;
-      cssClass = 'safe';
+      document.getElementById('wifeInput').value = document.getElementById('wifeIncome').value;
     }
   }
 
-  banner.className = `position-banner animate-in ${cssClass}`;
-  banner.innerHTML = `
-    <div class="banner-icon">${icon}</div>
-    <div class="banner-status">${status}</div>
-    <div class="banner-message">${message.replace('\n', '<br>')}</div>
-    <div class="banner-income">現在の妻の年収：${wifeIncome}万円</div>
-  `;
-}
-
-function renderGauge(wifeIncome, companySize) {
-  const maxGauge = 250;
-  const gaugeWrap = document.getElementById('gauge-wrap');
-  const legend = document.getElementById('walls-legend');
-
-  const pct = Math.min((wifeIncome / maxGauge) * 100, 100);
-
-  let markersHTML = '';
-  const effectiveWalls = WALLS.filter(w => companySize === 'large' || w.income !== 106);
-
-  effectiveWalls.forEach(w => {
-    const pos = Math.min((w.income / maxGauge) * 100, 98);
-    markersHTML += `
-      <div class="gauge-marker" style="left:${pos}%">
-        <div class="gauge-marker-label">${w.short}</div>
-        <div class="gauge-marker-line"></div>
-      </div>
-    `;
-  });
-
-  gaugeWrap.innerHTML = `
-    <div class="gauge-track">
-      <div class="gauge-fill" id="gauge-fill" style="width:0%"></div>
-    </div>
-    ${markersHTML}
-    <div class="gauge-current" id="gauge-current" style="left:${pct}%">
-      <div class="gauge-current-dot"></div>
-      <div class="gauge-current-label">あなた</div>
-    </div>
-  `;
-
-  setTimeout(() => {
-    document.getElementById('gauge-fill').style.width = pct + '%';
-  }, 100);
-
-  // 凡例
-  let legendHTML = '';
-  effectiveWalls.forEach(w => {
-    let cls = w.income <= wifeIncome ? 'passed' : wifeIncome > (w.income - 30) && wifeIncome < w.income ? 'current' : 'ahead';
-    let label = w.income <= wifeIncome ? `✓ ${w.short}超え` : `${w.short}`;
-    legendHTML += `<div class="wall-chip ${cls}">${label}</div>`;
-  });
-  legend.innerHTML = legendHTML;
-}
-
-function renderDeduction(deduction, husbandIncome) {
-  const card = document.getElementById('deduction-card');
-  const taxSaving = Math.round(deduction.amount * (husbandIncome <= 695 ? 0.1 : husbandIncome <= 900 ? 0.2 : 0.23));
-
-  card.innerHTML = `
-    <div class="deduction-title">🏦 夫の税金への影響（配偶者控除）</div>
-    <div class="deduction-row">
-      <span class="deduction-label">控除の種類</span>
-      <span class="deduction-value ${deduction.amount === 0 ? 'zero' : ''}">${deduction.reason}</span>
-    </div>
-    <div class="deduction-row">
-      <span class="deduction-label">控除額</span>
-      <span class="deduction-value ${deduction.amount === 0 ? 'zero' : ''}">${deduction.amount}万円</span>
-    </div>
-    <div class="deduction-row">
-      <span class="deduction-label">夫の節税効果（概算）</span>
-      <span class="deduction-value ${deduction.amount === 0 ? 'zero' : ''}">${deduction.amount === 0 ? '0円' : '約' + taxSaving + '万円/年'}</span>
-    </div>
-  `;
-}
-
-function renderScenarios(husbandIncome, wifeIncome, companySize, deduction) {
-  const effectiveWalls = WALLS.filter(w => companySize === 'large' || w.income !== 106);
-  const nextWall = effectiveWalls.find(w => w.income > wifeIncome);
-  const nextNextWall = effectiveWalls.find(w => w.income > (nextWall ? nextWall.income : wifeIncome));
-
-  // シナリオ1：今のまま継続
-  const s1 = {
-    type: 's-keep',
-    labelClass: 'l-keep',
-    icon: '🙆',
-    label: 'シナリオ A',
-    name: '今のまま維持する',
-    income: wifeIncome,
-    diff: '現状維持',
-    diffClass: 'diff-same',
-    points: [],
-  };
-  if (wifeIncome <= 103) {
-    s1.points = ['所得税なし・社会保険も扶養内', '夫の配偶者控除が満額適用', 'まずは安定ゾーン'];
-  } else if (wifeIncome <= 130) {
-    s1.points = ['扶養内で働ける', nextWall ? `${nextWall.short}まで余裕あり` : '壁はすべて超過', deduction.amount > 0 ? `夫の配偶者特別控除 ${deduction.amount}万円あり` : '夫の控除対象外'];
-  } else {
-    s1.points = ['社会保険は自己加入', deduction.amount > 0 ? `夫の配偶者特別控除 ${deduction.amount}万円` : '夫の控除は対象外', '安定した収入が続く'];
+  function updateFromInput(who) {
+    if(who === 'husband') {
+      let val = document.getElementById('husbandInput').value;
+      if(val !== '') document.getElementById('husbandIncome').value = val;
+    } else {
+      let val = document.getElementById('wifeInput').value;
+      if(val !== '') document.getElementById('wifeIncome').value = val;
+    }
   }
 
-  // シナリオ2：次の壁を意識して調整
-  let s2Income = wifeIncome;
-  let s2Points = [];
-  if (nextWall) {
-    // 次の壁の手前10万円に抑える
-    s2Income = nextWall.income - 10;
-    if (s2Income <= wifeIncome) s2Income = wifeIncome;
-    s2Points = [
-      `${nextWall.short}の手前で抑えるプラン`,
-      nextWall.income === 106 ? '社会保険の加入を回避できる' : nextWall.income === 130 ? '扶養内を維持できる' : `控除をキープしながら収入アップ`,
-      `現在より最大 +${s2Income - wifeIncome}万円アップ可能`,
+  function diagnose() {
+    const husband = parseInt(document.getElementById('husbandInput').value) || 0;
+    const wife = parseInt(document.getElementById('wifeInput').value) || 0;
+    const effective106 = (companySize === 'over' || companySize === 'unknown');
+
+    // 現在地の判定
+    let emoji, title, desc;
+    if(wife === 0) {
+      emoji = '🌱'; title = 'これから働くプラン';
+      desc = '今はお仕事をしていない状態です。どの壁を目指すか一緒に考えましょう！';
+    } else if(wife < 100) {
+      emoji = '✅'; title = '安心ゾーン（100万未満）';
+      desc = '年収' + wife + '万円。住民税もかからず扶養もバッチリです。あと' + (100-wife) + '万円まで税負担なしで働けます。';
+    } else if(wife < 103) {
+      emoji = '⚠️'; title = '住民税がかかります（100〜103万）';
+      desc = '年収' + wife + '万円。住民税はかかりますが所得税はゼロ。103万を超えないよう調整するかの分岐点です。';
+    } else if(wife < 106) {
+      emoji = '📌'; title = '103万の壁を超えています';
+      desc = '年収' + wife + '万円。所得税が発生します。配偶者特別控除があるので夫の税金は急には増えません。';
+    } else if(wife < 130) {
+      if(effective106) {
+        emoji = '⚠️'; title = '社会保険加入の可能性あり';
+        desc = '年収' + wife + '万円。51人以上の会社で【週20時間以上かつ月8.8万円以上】の場合、社会保険に加入となり手取りが減る可能性があります。';
+      } else {
+        emoji = '📌'; title = '103〜130万の間（調整ゾーン）';
+        desc = '年収' + wife + '万円。50人以下の会社なら社会保険の心配は少ないです。130万の壁まであと' + (130-wife) + '万円。';
+      }
+    } else if(wife < 160) {
+      emoji = '🔴'; title = '130万の壁を超えています';
+      desc = '年収' + wife + '万円。扶養から外れ、社会保険料（年間約20〜30万円）の負担が発生します。ここを超えるなら160万円以上を目指すと損しにくくなります。';
+    } else if(wife < 201) {
+      emoji = '💪'; title = 'しっかり稼げています（160〜200万）';
+      desc = '年収' + wife + '万円。社会保険料を払っても手取りがプラスになるゾーンです。201万円を超えると夫の控除はゼロになりますが、ここまで来たら前に進みましょう！';
+    } else {
+      emoji = '🚀'; title = 'フルキャリアプラン（201万以上）';
+      desc = '年収' + wife + '万円。配偶者控除はありませんが、自分の収入でしっかり生活を支えています。キャリアアップや昇給を目指しましょう！';
+    }
+
+    document.getElementById('statusEmoji').textContent = emoji;
+    document.getElementById('statusTitle').textContent = title;
+    document.getElementById('statusDesc').textContent = desc;
+
+    // --- 追加: 手取り額の概算計算 ---
+    // ※あくまで簡易的なシミュレーションです
+    let incomeTax = 0;
+    if (wife > 103) incomeTax = (wife - 103) * 0.05; // 103万超過分に5%
+
+    let residentTax = 0;
+    if (wife > 100) residentTax = 0.5 + (wife - 100) * 0.1; // 均等割約5000円 + 超過分約10%
+
+    let shaho = 0;
+    const is106shaho = (effective106 && wife >= 106);
+    const is130shaho = (wife >= 130);
+    if (is106shaho || is130shaho) {
+      shaho = wife * 0.15; // 社会保険料（健康保険＋厚生年金）を約15%として計算
+    }
+
+    // 小数点第1位までに丸める
+    incomeTax = Math.round(incomeTax * 10) / 10;
+    residentTax = Math.round(residentTax * 10) / 10;
+    shaho = Math.round(shaho * 10) / 10;
+    
+    const totalDeduction = Math.round((incomeTax + residentTax + shaho) * 10) / 10;
+    const takeHome = Math.round((wife - totalDeduction) * 10) / 10;
+
+    // 手取り額を画面に反映
+    // 小数点以下が0の場合は整数表示、それ以外は小数点第1位まで表示
+    document.getElementById('takehomeValue').textContent = takeHome % 1 === 0 ? takeHome : takeHome.toFixed(1);
+    document.getElementById('deductionValue').textContent = totalDeduction % 1 === 0 ? totalDeduction : totalDeduction.toFixed(1);
+    document.getElementById('shahoValue').textContent = shaho;
+    document.getElementById('incomeTaxValue').textContent = incomeTax;
+    document.getElementById('residentTaxValue').textContent = residentTax;
+    // -----------------------------
+
+    // 壁ゲージ
+    const walls = [
+      { amount: 100, name: '住民税の壁（100万円）', note: '住民税がかかり始める', color: '#4ECDC4', show: true },
+      { amount: 103, name: '所得税の壁（103万円）', note: '所得税・配偶者控除の上限', color: '#FFB347', show: true },
+      { amount: 106, name: '社会保険の壁（106万円）', note: '大企業勤務の場合のみ対象', color: '#FF8C69', show: effective106 },
+      { amount: 130, name: '社会保険の壁（130万円）', note: '扶養から外れ保険料負担が発生', color: '#FF6B6B', show: true },
+      { amount: 150, name: '配偶者控除の壁（150万円）', note: '夫の控除額が減り始める', color: '#E74C3C', show: true },
+      { amount: 201, name: '配偶者控除の壁（201万円）', note: '夫の配偶者控除がゼロになる', color: '#C0392B', show: true },
     ];
-  } else {
-    s2Income = wifeIncome + 20;
-    s2Points = ['すでに全壁突破済み', '収入をさらに増やすフェーズ', '手取りは増え続ける'];
+
+    let gaugeHTML = '';
+    // CSSアニメーションのために幅を最初は0%にしておく
+    walls.filter(w => w.show).forEach(w => {
+      const pct = Math.min(100, Math.round((wife / w.amount) * 100));
+      const isPast = wife >= w.amount;
+      const fillColor = isPast ? '#E74C3C' : w.color;
+      const remainText = isPast ? '✅ 超えています' : 'あと ' + (w.amount - wife) + '万円';
+      gaugeHTML += '<div class="wall-item">' +
+        '<div class="wall-header">' +
+          '<div class="wall-name"><span class="wall-dot" style="background:' + fillColor + '"></span>' + w.name + '</div>' +
+          '<div class="wall-amount" style="color:' + (isPast ? '#E74C3C' : '#8B7B74') + ';font-weight:' + (isPast ? '700' : '400') + '">' + remainText + '</div>' +
+        '</div>' +
+        '<div class="wall-bar-bg"><div class="wall-bar-fill" style="width: 0%; background:linear-gradient(to right,' + w.color + ',' + fillColor + ')" data-width="' + pct + '"></div></div>' +
+        '<div class="wall-note">' + w.note + '</div>' +
+        '</div>';
+    });
+    document.getElementById('wallGauge').innerHTML = gaugeHTML;
+
+    // 夫の控除
+    let deduction = 0, dNote = '';
+    if(wife <= 103) { deduction = 38; dNote = '配偶者控除（満額）が適用されています'; }
+    else if(wife <= 105) { deduction = 38; dNote = '配偶者特別控除（満額に近い）'; }
+    else if(wife <= 110) { deduction = 36; dNote = '配偶者特別控除（わずかに減少）'; }
+    else if(wife <= 115) { deduction = 31; dNote = '配偶者特別控除（減少中）'; }
+    else if(wife <= 120) { deduction = 26; dNote = '配偶者特別控除（減少中）'; }
+    else if(wife <= 125) { deduction = 21; dNote = '配偶者特別控除（半分以下）'; }
+    else if(wife <= 130) { deduction = 16; dNote = '配偶者特別控除（大きく減少）'; }
+    else if(wife <= 140) { deduction = 11; dNote = '配偶者特別控除（少額）'; }
+    else if(wife <= 150) { deduction = 6; dNote = '配偶者特別控除（ごく少額）'; }
+    else { deduction = 0; dNote = '配偶者控除・特別控除ともにゼロ'; }
+
+    let taxRate = husband >= 800 ? 0.23 : husband >= 600 ? 0.20 : 0.10;
+    const taxSaving = Math.round(deduction * taxRate);
+
+    document.getElementById('husbandEffect').innerHTML =
+      '<div class="deduction-row"><div class="deduction-label">配偶者控除・特別控除の額</div>' +
+      '<div class="deduction-value dv-neutral">' + deduction + '万円</div></div>' +
+      '<div class="deduction-row"><div class="deduction-label">夫の税金の節約効果（目安）</div>' +
+      '<div class="deduction-value ' + (deduction > 0 ? 'dv-positive' : 'dv-negative') + '">約' + taxSaving + '万円/年</div></div>' +
+      '<div class="deduction-row"><div class="deduction-label">ステータス</div>' +
+      '<div style="font-size:13px;color:var(--text);font-weight:500;">' + dNote + '</div></div>';
+
+    // アドバイス
+    let adv = '<div class="result-card"><div class="card-title">💬 あなたへのアドバイス</div>';
+    if(wife < 100) {
+      adv += '<div class="advice-card green"><div class="advice-header">✅ 今のままがいちばん安心です</div><div class="advice-body">住民税も所得税もかからないゾーンです。月の労働時間に余裕があれば、あと' + (100-wife) + '万円まで税負担なく増やせます。</div></div>';
+    } else if(wife < 103) {
+      adv += '<div class="advice-card orange"><div class="advice-header">⚠️ 103万の壁が目前です</div><div class="advice-body">あと' + (103-wife) + '万円で所得税の壁（103万）です。「103万を超えないようにする」か「思い切って130万近くまで働く」か、どちらかに決める方が得策です。中途半端がいちばん損しやすいです。</div></div>';
+    } else if(wife < 130) {
+      adv += '<div class="advice-card orange"><div class="advice-header">📌 103〜130万の「調整ゾーン」にいます</div><div class="advice-body">所得税は少し発生しますが、配偶者特別控除があるので夫の税金は急には増えません。130万円を超えると社会保険料の負担が発生するので、「130万を絶対に超えない」よう注意しましょう。</div></div>';
+    } else if(wife < 160) {
+      adv += '<div class="advice-card red"><div class="advice-header">🔴 手取りが減る「働き損」ゾーンです</div><div class="advice-body">社会保険料（健康保険＋年金）が年間約' + Math.round(wife * 0.15) + '万円かかっています。年収160万円以上を目指すのが手取りを回復させる目安です。</div></div>';
+    } else if(wife < 201) {
+      adv += '<div class="advice-card blue"><div class="advice-header">💪 しっかり稼げています！</div><div class="advice-body">社会保険料を払っても手取りがプラスになるゾーンです。年金も自分のものとして積み上がります。201万円を超えると夫の控除はなくなりますが、ここまで来たらキャリアアップを優先しましょう。</div></div>';
+    } else {
+      adv += '<div class="advice-card green"><div class="advice-header">🚀 フルキャリアで稼ぐプランです！</div><div class="advice-body">配偶者控除はありませんが、自分の収入でしっかり生活を支えられています。スキルアップ・昇給・副業なども視野に入れて長期的な収入アップを目指しましょう。</div></div>';
+    }
+    adv += '<div class="advice-card blue"><div class="advice-header">💡 共通の注意ポイント</div><div class="advice-body">・103万・130万の壁は「超えるか超えないか」を明確にする<br>・中途半端に超えると「働き損」になりやすい<br>・106万の壁は勤務先の規模・時間(週20h以上)・月収すべてが条件です</div></div></div>';
+
+    document.getElementById('adviceArea').innerHTML = adv;
+
+    // 結果エリアの表示とアニメーション設定
+    const r = document.getElementById('result');
+    r.style.display = 'block';
+    
+    // 一度アニメーションをリセットして順番に発火
+    const sections = r.querySelectorAll('.result-section');
+    sections.forEach(sec => {
+      sec.style.animation = 'none';
+      sec.style.opacity = '0';
+    });
+    
+    // リフロー強制（アニメーション再起動のため）
+    void r.offsetWidth;
+    
+    // カスケードアニメーション（0.15秒ずつ遅らせて表示）
+    sections.forEach((sec, index) => {
+      sec.style.animation = `fadeUpBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards ${index * 0.15}s`;
+    });
+
+    // レーダーゲージのバーが伸びるアニメーション
+    setTimeout(() => {
+      document.querySelectorAll('.wall-bar-fill').forEach(bar => {
+        bar.style.width = bar.getAttribute('data-width') + '%';
+      });
+    }, 300);
+
+    setTimeout(() => r.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
   }
-
-  const s2 = {
-    type: 's-up',
-    labelClass: 'l-up',
-    icon: '📈',
-    label: 'シナリオ B',
-    name: nextWall ? `${nextWall.short}の手前で調整` : '収入をさらに伸ばす',
-    income: s2Income,
-    diff: s2Income > wifeIncome ? `+${s2Income - wifeIncome}万円` : '調整なし',
-    diffClass: 'diff-plus',
-    points: s2Points,
-    recommend: deduction.amount > 0 && wifeIncome < 150,
-  };
-
-  // シナリオ3：壁を突き抜けてフルタイム
-  const s3Target = nextNextWall ? nextNextWall.income + 30 : 250;
-  const s3Deduction = getDeduction(husbandIncome, s3Target);
-  const s3 = {
-    type: 's-full',
-    labelClass: 'l-full',
-    icon: '💪',
-    label: 'シナリオ C',
-    name: '思い切って壁を突破！',
-    income: s3Target,
-    diff: `+${s3Target - wifeIncome}万円`,
-    diffClass: 'diff-check',
-    points: [
-      nextWall ? `${nextWall.short}の壁を超えて収入アップ` : 'フルタイムで働く',
-      s3Deduction.amount === 0 ? '夫の配偶者控除はなくなるが自分の収入で補える' : `夫の控除 ${s3Deduction.amount}万円も一部残る`,
-      '社会保険も自分で加入（将来の年金が増える）',
-      '手取りが大幅増になるラインを目指す',
-    ],
-  };
-
-  const scenariosEl = document.getElementById('scenarios');
-  scenariosEl.innerHTML = [s1, s2, s3].map(s => `
-    <div class="scenario-card ${s.type}">
-      <div class="scenario-head">
-        <div class="scenario-icon">${s.icon}</div>
-        <div>
-          <div class="scenario-label ${s.labelClass}">${s.label}${s.recommend ? '<span class="recommend-badge">おすすめ</span>' : ''}</div>
-          <div class="scenario-name">${s.name}</div>
-        </div>
-      </div>
-      <div class="scenario-income-row">
-        <span class="scenario-income-num">${s.income}</span>
-        <span class="scenario-income-unit">万円/年</span>
-        <span class="scenario-income-diff ${s.diffClass}">${s.diff}</span>
-      </div>
-      <ul class="scenario-points">
-        ${s.points.map(p => `<li>${p}</li>`).join('')}
-      </ul>
-    </div>
-  `).join('');
-}
-
-function reset() {
-  document.getElementById('result').style.display = 'none';
-  document.getElementById('form-area').style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
 </script>
+
 </body>
 </html>
